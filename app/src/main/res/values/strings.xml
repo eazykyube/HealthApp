@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">HealthApp</string>
+    <string name="add_title">Add title</string>
+    <string name="add_description">Add description</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="periodicity">Periodicity</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="goal">Goal</string>
+    <string name="add_count_day">Add count/day</string>
+    <string name="create_checklist">Create checklist</string>
+</resources>
