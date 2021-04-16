@@ -15,4 +15,5 @@
     <string name="goal">Goal</string>
     <string name="add_count_day">Add count/day</string>
     <string name="create_checklist">Create checklist</string>
+    <string name="add_button">Add button</string>
 </resources>

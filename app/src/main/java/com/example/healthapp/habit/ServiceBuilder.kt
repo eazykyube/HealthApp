@@ -6,7 +6,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
-
     private const val URL = "https://keep-in-touch.tk/api/habit/"
 
     private val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -22,5 +21,4 @@ object ServiceBuilder {
     fun <T> buildService(serviceType: Class<T>): T {
         return retrofit.create(serviceType)
     }
-
 }

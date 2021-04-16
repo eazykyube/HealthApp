@@ -26,5 +26,4 @@
             android:textSize="20sp" />
 
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

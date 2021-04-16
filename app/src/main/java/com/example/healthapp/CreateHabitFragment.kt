@@ -12,11 +12,9 @@ import com.example.healthapp.databinding.FragmentCreateHabitBinding
 import com.example.healthapp.habit.HabitService
 import com.example.healthapp.habit.Periodicity
 import com.example.healthapp.habit.ServiceBuilder
-import kotlinx.android.synthetic.main.fragment_create_habit.view.*
 import retrofit2.Call
 import retrofit2.Response
 import java.time.DayOfWeek
-import javax.security.auth.callback.Callback
 
 class CreateHabitFragment: Fragment() {
 
@@ -28,16 +26,13 @@ class CreateHabitFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentCreateHabitBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
 
         return binding.root
-
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,10 +48,10 @@ class CreateHabitFragment: Fragment() {
                 requestCall.enqueue(object: retrofit2.Callback<Periodicity> {
                     override fun onResponse(call: Call<Periodicity>, response: Response<Periodicity>) {
                         if (response.isSuccessful) {
-                            Toast.makeText(context, "Successfully added periodicity", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, "Successfully added periodicity", Toast.LENGTH_SHORT).show()
                         }
                         else {
-                            Toast.makeText(context, "Failed to add periodicity", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, "Failed to add periodicity", Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -71,31 +66,17 @@ class CreateHabitFragment: Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun getDays(): MutableList<Int> {
-        var _daysOfWeek: MutableList<Int> = ArrayList()
-        if (binding.monCheck.isChecked) {
-            _daysOfWeek.add(DayOfWeek.MONDAY.value)
-        }
-        if (binding.tueCheck.isChecked) {
-            _daysOfWeek.add(DayOfWeek.TUESDAY.value)
-        }
-        if (binding.wedCheck.isChecked) {
-            _daysOfWeek.add(DayOfWeek.WEDNESDAY.value)
-        }
-        if (binding.thuCheck.isChecked) {
-            _daysOfWeek.add(DayOfWeek.THURSDAY.value)
-        }
-        if (binding.friCheck.isChecked) {
-            _daysOfWeek.add(DayOfWeek.FRIDAY.value)
-        }
-        if (binding.satCheck.isChecked) {
-            _daysOfWeek.add(DayOfWeek.SATURDAY.value)
-        }
-        if (binding.sunCheck.isChecked) {
-            _daysOfWeek.add(DayOfWeek.SUNDAY.value)
+        val _daysOfWeek: MutableList<Int> = ArrayList()
+        when {
+            binding.monCheck.isChecked -> _daysOfWeek.add(1)
+            binding.tueCheck.isChecked -> _daysOfWeek.add(2)
+            binding.wedCheck.isChecked -> _daysOfWeek.add(3)
+            binding.thuCheck.isChecked -> _daysOfWeek.add(4)
+            binding.friCheck.isChecked -> _daysOfWeek.add(5)
+            binding.satCheck.isChecked -> _daysOfWeek.add(6)
+            binding.sunCheck.isChecked -> _daysOfWeek.add(7)
         }
         return _daysOfWeek
     }
-
 }
