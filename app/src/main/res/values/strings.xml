@@ -16,4 +16,6 @@
     <string name="add_count_day">Add count/day</string>
     <string name="create_checklist">Create checklist</string>
     <string name="add_button">Add button</string>
+    <string name="add_value">Add value</string>
+    <string name="select_type">Select type</string>
 </resources>

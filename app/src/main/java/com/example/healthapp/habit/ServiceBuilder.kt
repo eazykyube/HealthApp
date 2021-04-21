@@ -1,5 +1,6 @@
 package com.example.healthapp.habit
 
+import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,7 +11,9 @@ object ServiceBuilder {
 
     private val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
-    private val okHttp = OkHttpClient.Builder().addInterceptor(logger)
+    private val dispatcher = Dispatcher()
+
+    private val okHttp = OkHttpClient.Builder().addInterceptor(logger).dispatcher(dispatcher)
 
     private val builder = Retrofit.Builder().baseUrl(URL)
         .addConverterFactory(GsonConverterFactory.create())
@@ -19,6 +22,7 @@ object ServiceBuilder {
     private val retrofit = builder.build()
 
     fun <T> buildService(serviceType: Class<T>): T {
+        dispatcher.maxRequests = 1
         return retrofit.create(serviceType)
     }
 }

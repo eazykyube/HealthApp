@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/habitCreationFragment">
-
+    app:startDestination="@id/createHabitFragment">
     <fragment
-        android:id="@+id/habitCreationFragment"
+        android:id="@+id/createHabitFragment"
         android:name="com.example.healthapp.CreateHabitFragment"
-        android:label="HabitCreationFragment" />
+        android:label="fragment_create_habit"
+        tools:layout="@layout/fragment_create_habit" >
+        <action
+            android:id="@+id/action_createHabitFragment_to_listHabitFragment"
+            app:destination="@id/listHabitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listHabitFragment"
+        android:name="com.example.healthapp.ListHabitFragment"
+        android:label="fragment_list_habit"
+        tools:layout="@layout/fragment_list_habit" />
 </navigation>
