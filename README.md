@@ -11,3 +11,5 @@ The UX/UI design and back-end is done by other team members while the Android ap
 ## Screenshot
 
 ![](https://drive.google.com/uc?export=view&id=1sPg2HNBYDe0Od36Ahu0f0lb4zjNj8QYs)
+
+<img src="https://drive.google.com/uc?export=view&id=1sPg2HNBYDe0Od36Ahu0f0lb4zjNj8QYs" width="200>
