@@ -2,6 +2,7 @@ package com.example.healthapp.habit
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface HabitService {
@@ -15,4 +16,6 @@ interface HabitService {
     @POST("habits/")
     fun setHabit(@Body habit: Habit): Call<Habit>
 
+    @GET("habits/")
+    fun getHabit(): Call<List<Habit>>
 }

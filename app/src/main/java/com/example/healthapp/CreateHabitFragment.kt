@@ -33,8 +33,6 @@ class CreateHabitFragment: Fragment() {
     private lateinit var newGoal: Goal
     private lateinit var newHabit: Habit
 
-    private lateinit var habitService: HabitService
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -82,8 +80,6 @@ class CreateHabitFragment: Fragment() {
                 newHabit.goal = viewModel.goalId.value
                 newHabit.isGood = true
 
-                habitService = ServiceBuilder.buildService(HabitService::class.java)
-
                 sendRequests()
 
                 viewModel.perId.observe(viewLifecycleOwner, { id ->
@@ -93,6 +89,8 @@ class CreateHabitFragment: Fragment() {
                 viewModel.goalId.observe(viewLifecycleOwner, { id ->
                     newHabit.goal = id
                 })
+
+                // While back-end is not fixed
             }
             else {
                 Toast.makeText(context, "Please, fill all of the fields", Toast.LENGTH_SHORT).show()
@@ -113,9 +111,9 @@ class CreateHabitFragment: Fragment() {
     }
 
     private fun createPeriodicity() {
-        val perCall = habitService.setPeriodicity(newPeriodicity)
+        val perCall = viewModel.habitService.value?.setPeriodicity(newPeriodicity)
 
-        perCall.enqueue(object: retrofit2.Callback<Periodicity> {
+        perCall?.enqueue(object: retrofit2.Callback<Periodicity> {
             override fun onResponse(call: Call<Periodicity>, response: Response<Periodicity>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Successfully added periodicity", Toast.LENGTH_SHORT).show()
@@ -134,9 +132,9 @@ class CreateHabitFragment: Fragment() {
     }
 
     private fun createGoal() {
-        val goalCall = habitService.setGoal(newGoal)
+        val goalCall = viewModel.habitService.value?.setGoal(newGoal)
 
-        goalCall.enqueue(object: retrofit2.Callback<Goal> {
+        goalCall?.enqueue(object: retrofit2.Callback<Goal> {
             override fun onResponse(call: Call<Goal>, response: Response<Goal>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Successfully added goal", Toast.LENGTH_SHORT).show()
@@ -155,28 +153,21 @@ class CreateHabitFragment: Fragment() {
     }
 
     private fun createHabit() {
-        val habitCall = habitService.setHabit(newHabit)
+        val habitCall = viewModel.habitService.value?.setHabit(newHabit)
 
-        habitCall.enqueue(object: retrofit2.Callback<Habit> {
+        habitCall?.enqueue(object: retrofit2.Callback<Habit> {
             override fun onResponse(call: Call<Habit>, response: Response<Habit>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Successfully added habit", Toast.LENGTH_SHORT).show()
-                }
-                else {
+
+                } else {
                     Toast.makeText(context, "Failed to add habit", Toast.LENGTH_SHORT).show()
                 }
-                // While back-end is not fixed
-                binding.createButton.setOnClickListener {
-                    it.findNavController().navigate(CreateHabitFragmentDirections.actionCreateHabitFragmentToListHabitFragment())
-                }
+                binding.createButton.findNavController().navigate(CreateHabitFragmentDirections.actionCreateHabitFragmentToListHabitFragment())
             }
 
             override fun onFailure(call: Call<Habit>, t: Throwable) {
                 Toast.makeText(context, "Failed to add habit", Toast.LENGTH_SHORT).show()
-                // While back-end is not fixed
-                binding.createButton.setOnClickListener {
-                    it.findNavController().navigate(CreateHabitFragmentDirections.actionCreateHabitFragmentToListHabitFragment())
-                }
             }
         })
     }
