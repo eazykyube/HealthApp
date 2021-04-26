@@ -3,7 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/createHabitFragment">
+    app:startDestination="@id/listHabitFragment">
+    <fragment
+        android:id="@+id/listHabitFragment"
+        android:name="com.example.healthapp.ListHabitFragment"
+        android:label="fragment_list_habit"
+        tools:layout="@layout/fragment_list_habit" >
+        <action
+            android:id="@+id/action_listHabitFragment_to_createHabitFragment"
+            app:destination="@id/createHabitFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createHabitFragment"
         android:name="com.example.healthapp.CreateHabitFragment"
@@ -13,9 +22,4 @@
             android:id="@+id/action_createHabitFragment_to_listHabitFragment"
             app:destination="@id/listHabitFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/listHabitFragment"
-        android:name="com.example.healthapp.ListHabitFragment"
-        android:label="fragment_list_habit"
-        tools:layout="@layout/fragment_list_habit" />
 </navigation>

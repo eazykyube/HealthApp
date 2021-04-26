@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.healthapp.databinding.FragmentListHabitBinding
@@ -53,6 +54,10 @@ class ListHabitFragment: Fragment() {
                 Toast.makeText(context, "Failed to get habits", Toast.LENGTH_SHORT).show()
             }
         })
+
+        binding.addButton.setOnClickListener {
+            it.findNavController().navigate(ListHabitFragmentDirections.actionListHabitFragmentToCreateHabitFragment())
+        }
 
         return binding.root
     }

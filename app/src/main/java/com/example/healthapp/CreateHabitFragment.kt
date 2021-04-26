@@ -89,8 +89,6 @@ class CreateHabitFragment: Fragment() {
                 viewModel.goalId.observe(viewLifecycleOwner, { id ->
                     newHabit.goal = id
                 })
-
-                // While back-end is not fixed
             }
             else {
                 Toast.makeText(context, "Please, fill all of the fields", Toast.LENGTH_SHORT).show()
@@ -159,10 +157,10 @@ class CreateHabitFragment: Fragment() {
             override fun onResponse(call: Call<Habit>, response: Response<Habit>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Successfully added habit", Toast.LENGTH_SHORT).show()
-
                 } else {
                     Toast.makeText(context, "Failed to add habit", Toast.LENGTH_SHORT).show()
                 }
+                // Not on response since backend works not correctly
                 binding.createButton.findNavController().navigate(CreateHabitFragmentDirections.actionCreateHabitFragmentToListHabitFragment())
             }
 
